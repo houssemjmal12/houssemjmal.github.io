@@ -6,6 +6,7 @@
 <title>Houssem Jmal | AI Research Scientist and Engineer</title>
 <meta name="description" content="Houssem Jmal is an AI Research Scientist and Engineer and PhD candidate at Nantes Université / Inria, working on federated learning, network security and foundation models.">
 <meta name="author" content="Houssem Jmal">
+<meta name="theme-color" content="#070b16">
 <meta property="og:title" content="Houssem Jmal | AI Research Scientist and Engineer">
 <meta property="og:description" content="Federated learning, trustworthy AI and foundation models. PhD candidate at Nantes Université / Inria.">
 <meta property="og:type" content="website">
@@ -27,315 +28,564 @@
 </script>
 <style>
 :root{
-  --bg:#ffffff; --bg2:#f4f7fb; --text:#1c2733; --muted:#5a6978; --navy:#1b2f4e;
-  --blue:#1f5fa8; --blue-soft:#e6eef8; --line:#dbe3ec; --card:#ffffff;
-  --shadow:0 1px 2px rgba(20,40,70,.06),0 6px 20px rgba(20,40,70,.06);
-}
-@media (prefers-color-scheme: dark){
-  :root{
-    --bg:#0e1621; --bg2:#121d2b; --text:#e4ebf3; --muted:#9aabbd; --navy:#e4ebf3;
-    --blue:#6aa8ee; --blue-soft:#1a2a40; --line:#243449; --card:#142133;
-    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
-  }
+  --bg:#070b16; --bg2:#0b1222; --text:#e6ebf5; --muted:#98a4b8; --dim:#6e7b91;
+  --cyan:#38bdf8; --blue:#4f8cff; --violet:#8b7bff; --green:#2fd18a;
+  --glass:rgba(255,255,255,.035); --glass2:rgba(255,255,255,.06); --line:rgba(255,255,255,.09);
+  --grad:linear-gradient(135deg,#38bdf8 0%,#6a7dff 55%,#8b7bff 100%);
+  --radius:18px;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth; scroll-padding-top:80px}
 body{
-  margin:0; background:var(--bg); color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  line-height:1.6; font-size:16px;
+  margin:0; color:var(--text); background:var(--bg);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.65; font-size:16px; overflow-x:hidden;
 }
-a{color:var(--blue); text-decoration:none}
+body::before{ /* ambient glows */
+  content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
+  background:
+    radial-gradient(900px 600px at 8% 4%, rgba(56,189,248,.16), transparent 60%),
+    radial-gradient(900px 700px at 100% 30%, rgba(139,123,255,.16), transparent 60%),
+    radial-gradient(800px 600px at 20% 95%, rgba(47,209,138,.08), transparent 60%);
+}
+#net{position:fixed; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none; opacity:.8}
+a{color:var(--cyan); text-decoration:none}
 a:hover{text-decoration:underline}
-.wrap{max-width:960px; margin:0 auto; padding:0 24px}
+.wrap{max-width:1080px; margin:0 auto; padding:0 24px}
+.grad-text{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent}
 
-/* nav */
-header.nav{
-  position:sticky; top:0; z-index:10; background:color-mix(in srgb,var(--bg) 88%,transparent);
-  backdrop-filter:blur(8px); border-bottom:1px solid var(--line);
-}
-.nav .wrap{display:flex; align-items:center; justify-content:space-between; height:56px}
-.nav .brand{font-weight:700; color:var(--navy)}
-.nav ul{display:flex; gap:20px; list-style:none; margin:0; padding:0; font-size:14px}
-.nav ul a{color:var(--muted)}
-.nav ul a:hover{color:var(--blue); text-decoration:none}
-@media (max-width:640px){ .nav ul{display:none} }
+/* ---------- nav ---------- */
+.nav{position:sticky; top:0; z-index:50; background:rgba(7,11,22,.72); backdrop-filter:blur(14px); border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex; align-items:center; justify-content:space-between; height:64px; gap:16px}
+.brand{font-weight:800; font-size:17px; color:#fff; letter-spacing:-.01em; white-space:nowrap}
+.brand:hover{text-decoration:none}
+.nav ul{display:flex; align-items:center; gap:4px; list-style:none; margin:0; padding:0; overflow-x:auto; scrollbar-width:none}
+.nav ul::-webkit-scrollbar{display:none}
+.nav ul a{display:block; padding:7px 13px; border-radius:999px; color:var(--muted); font-size:14.5px; font-weight:500; white-space:nowrap; transition:.2s}
+.nav ul a:hover{color:#fff; text-decoration:none}
+.nav ul a.active{color:#fff; background:rgba(56,189,248,.14)}
+.nav .cv{margin-left:6px; background:var(--grad); color:#fff!important; font-weight:700}
+@media (max-width:860px){ .nav ul li:not(:last-child){display:none} .nav ul{margin-left:auto} }
 
-/* hero */
-.hero{padding:72px 0 56px; background:linear-gradient(180deg,var(--bg2),var(--bg))}
-.hero .eyebrow{color:var(--blue); font-weight:600; font-size:14px; letter-spacing:.04em; text-transform:uppercase}
-.hero h1{font-size:clamp(34px,6vw,52px); line-height:1.1; margin:8px 0 12px; color:var(--navy)}
-.hero p.lead{font-size:19px; color:var(--muted); max-width:680px; margin:0 0 28px}
-.btns{display:flex; flex-wrap:wrap; gap:10px}
-.btn{
-  display:inline-block; padding:10px 18px; border-radius:8px; font-weight:600; font-size:15px;
-  border:1px solid var(--blue); color:var(--blue); background:transparent;
-}
-.btn.primary{background:var(--blue); color:#fff}
-.btn:hover{text-decoration:none; filter:brightness(1.08)}
-.meta{margin-top:22px; color:var(--muted); font-size:14px}
+/* ---------- hero ---------- */
+.hero{padding:76px 0 40px}
+.hero-grid{display:grid; grid-template-columns:1.25fr .75fr; gap:40px; align-items:center}
+.status{display:inline-flex; align-items:center; gap:10px; padding:7px 15px; border:1px solid var(--line); background:var(--glass);
+  border-radius:999px; color:var(--muted); font-size:14px}
+.status .dot{width:10px; height:10px; border-radius:50%; background:var(--green); box-shadow:0 0 0 4px rgba(47,209,138,.2); animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 7px rgba(47,209,138,0)}}
+.hero h1{font-size:clamp(40px,7vw,72px); line-height:1.04; letter-spacing:-.035em; margin:22px 0 14px; font-weight:800}
+.typed{font-size:clamp(20px,2.6vw,26px); color:#d3dbea; min-height:1.6em; font-weight:500}
+.typed .cursor{display:inline-block; width:2px; height:1.1em; background:var(--cyan); margin-left:3px; vertical-align:-3px; animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.lead{color:var(--muted); font-size:18px; max-width:600px; margin:14px 0 26px}
+.btns{display:flex; flex-wrap:wrap; gap:12px}
+.btn{display:inline-flex; align-items:center; gap:9px; padding:13px 22px; border-radius:12px; font-weight:700; font-size:15px; color:var(--text);
+  border:1px solid var(--line); background:var(--glass); transition:.2s}
+.btn:hover{text-decoration:none; transform:translateY(-2px); background:var(--glass2)}
+.btn.primary{background:var(--grad); border-color:transparent; color:#fff; box-shadow:0 10px 30px rgba(79,140,255,.35)}
+.btn svg{width:17px; height:17px}
+.socials{display:flex; gap:10px; margin-top:18px}
+.socials a{width:44px; height:44px; display:grid; place-items:center; border-radius:12px; border:1px solid var(--line); background:var(--glass); color:var(--muted); transition:.2s}
+.socials a:hover{color:#fff; transform:translateY(-2px); background:var(--glass2)}
+.socials svg{width:19px; height:19px}
 
-.hero .hero-grid{display:flex; align-items:center; justify-content:space-between; gap:40px}
-.hero .hero-text{flex:1; min-width:0}
-.hero .photo{
-  width:200px; height:200px; border-radius:50%; object-fit:cover; flex:none;
-  border:4px solid var(--card); box-shadow:var(--shadow);
-}
-@media (max-width:720px){
-  .hero .hero-grid{flex-direction:column-reverse; align-items:flex-start; gap:24px}
-  .hero .photo{width:128px; height:128px}
+.portrait{position:relative; justify-self:center; text-align:center}
+.ring{width:300px; height:300px; border-radius:50%; padding:6px; background:conic-gradient(from 200deg,#38bdf8,#8b7bff,#2fd18a,#38bdf8); box-shadow:0 0 70px rgba(79,140,255,.28)}
+.ring img{width:100%; height:100%; border-radius:50%; object-fit:cover; display:block; border:6px solid var(--bg)}
+.chips{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:22px; width:300px}
+.chip{border:1px solid var(--line); background:var(--glass); border-radius:14px; padding:11px 6px}
+.chip b{display:block; font-size:19px}
+.chip span{display:block; font-size:11.5px; line-height:1.3; color:var(--muted); margin-top:2px}
+@media (max-width:860px){
+  .hero-grid{grid-template-columns:1fr}
+  .portrait{order:-1}
+  .ring{width:210px; height:210px}
+  .chips{width:100%; max-width:300px}
 }
 
-.avail{display:inline-flex; align-items:center; gap:8px; margin-top:22px; padding:6px 14px; border-radius:999px;
-  background:var(--blue-soft); color:var(--blue); font-size:14px; font-weight:600}
-.avail .dot{width:9px; height:9px; border-radius:50%; background:#2fb36b; box-shadow:0 0 0 3px rgba(47,179,107,.25)}
-.subnote{margin-top:10px; color:var(--muted); font-size:14px}
-ol.pubs-list{list-style:none; counter-reset:pub; margin:0; padding:0; display:grid; gap:14px}
-ol.pubs-list li{counter-increment:pub; position:relative; padding:14px 16px 14px 52px; background:var(--card);
-  border:1px solid var(--line); border-radius:10px; font-size:15px}
-ol.pubs-list li::before{content:"[" counter(pub) "]"; position:absolute; left:16px; top:14px; color:var(--blue); font-weight:700}
-ol.pubs-list .links{display:block; margin-top:4px; font-size:13.5px; color:var(--muted)}
-ol.pubs-list .me{font-weight:700; color:var(--navy)}
-.interests{display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+/* ---------- stats ---------- */
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin:40px 0 10px}
+.stat{border:1px solid var(--line); background:var(--glass); border-radius:var(--radius); padding:22px 14px; text-align:center}
+.stat b{display:block; font-size:34px; line-height:1.1; font-weight:800}
+.stat span{display:block; margin-top:6px; color:var(--muted); font-size:13.5px}
+@media (max-width:760px){ .stats{grid-template-columns:repeat(2,1fr)} }
 
-/* sections */
-section{padding:56px 0; border-top:1px solid var(--line)}
-section h2{font-size:26px; margin:0 0 24px; color:var(--navy)}
-section h2::after{content:""; display:block; width:44px; height:3px; background:var(--blue); margin-top:8px; border-radius:2px}
-.grid{display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-.grid.two{grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr))}
-.card{
-  background:var(--card); border:1px solid var(--line); border-radius:12px; padding:20px; box-shadow:var(--shadow);
-}
-.card h3{margin:0 0 6px; font-size:17px; color:var(--navy)}
-.card p{margin:0; color:var(--muted); font-size:15px}
-.tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:12px}
-.tag{background:var(--blue-soft); color:var(--blue); font-size:12.5px; padding:3px 9px; border-radius:999px; font-weight:500}
+/* ---------- sections ---------- */
+section{padding:84px 0 10px}
+.eyebrow{color:var(--cyan); font-weight:700; font-size:13px; letter-spacing:.14em; text-transform:uppercase}
+h2{font-size:clamp(28px,4.4vw,42px); line-height:1.15; letter-spacing:-.025em; margin:8px 0 12px; font-weight:800}
+.sub{color:var(--muted); font-size:18px; margin:0 0 30px; max-width:680px}
+.panel{border:1px solid var(--line); background:linear-gradient(180deg,var(--glass2),var(--glass)); border-radius:22px; padding:28px}
+
+/* about */
+.about{display:grid; grid-template-columns:1.35fr 1fr; gap:26px}
+.about p{margin:0 0 16px; color:#c7d0e0}
+.about p b{color:#fff}
+.tags{display:flex; flex-wrap:wrap; gap:9px; margin-top:6px}
+.tag{padding:6px 14px; border-radius:999px; border:1px solid rgba(56,189,248,.25); background:rgba(56,189,248,.07); color:#cfe9fb; font-size:13.5px}
+.kv{display:grid; gap:12px}
+.kv div{border:1px solid var(--line); background:var(--glass); border-radius:14px; padding:13px 16px}
+.kv small{display:block; color:var(--cyan); font-weight:700; font-size:11.5px; letter-spacing:.12em; text-transform:uppercase}
+.kv span{color:#dfe6f2; font-size:15px}
+@media (max-width:860px){ .about{grid-template-columns:1fr} }
 
 /* timeline */
-.tl{list-style:none; margin:0; padding:0; border-left:2px solid var(--line)}
-.tl li{position:relative; padding:0 0 28px 24px}
-.tl li::before{
-  content:""; position:absolute; left:-7px; top:6px; width:12px; height:12px; border-radius:50%;
-  background:var(--blue); border:2px solid var(--bg);
+.tl{position:relative; padding-left:34px; display:grid; gap:20px}
+.tl::before{content:""; position:absolute; left:9px; top:8px; bottom:8px; width:2px; background:linear-gradient(180deg,var(--cyan),var(--violet),transparent)}
+.job{position:relative; border:1px solid var(--line); background:linear-gradient(180deg,var(--glass2),var(--glass)); border-radius:var(--radius); padding:22px 24px}
+.job::before{content:""; position:absolute; left:-33px; top:26px; width:14px; height:14px; border-radius:50%; background:var(--bg); border:2.5px solid var(--cyan); box-shadow:0 0 0 4px rgba(56,189,248,.15)}
+.job .when{color:var(--cyan); font-weight:700; font-size:12.5px; letter-spacing:.1em; text-transform:uppercase}
+.job h3{margin:5px 0 2px; font-size:19px; letter-spacing:-.01em}
+.job .org{color:var(--muted); font-size:15px}
+.job ul{list-style:none; padding:0; margin:14px 0 0; display:grid; gap:9px}
+.job li{position:relative; padding-left:20px; color:#c3ccdc; font-size:15px}
+.job li::before{content:"▹"; position:absolute; left:0; color:var(--cyan)}
+.job li b{color:#fff}
+
+/* tech */
+.techgrid{display:grid; gap:18px}
+.tcat h4{margin:0 0 12px; color:var(--dim); font-size:12.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase}
+.tools{display:flex; flex-wrap:wrap; gap:10px}
+.tool{display:flex; align-items:center; gap:9px; padding:9px 14px; border:1px solid var(--line); background:var(--glass); border-radius:12px; font-size:14px; font-weight:600; transition:.2s}
+.tool:hover{transform:translateY(-2px); background:var(--glass2); border-color:rgba(56,189,248,.35)}
+.tool img{width:18px; height:18px}
+
+/* cards */
+.cards{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+@media (max-width:900px){ .cards{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:600px){ .cards{grid-template-columns:1fr} }
+.card{border:1px solid var(--line); background:linear-gradient(180deg,var(--glass2),var(--glass)); border-radius:var(--radius); padding:24px; transition:.25s}
+.card:hover{transform:translateY(-4px); border-color:rgba(106,125,255,.45); box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.icon{width:52px; height:52px; border-radius:14px; background:var(--grad); display:grid; place-items:center; margin-bottom:16px}
+.icon svg{width:25px; height:25px; stroke:#fff}
+.card h3{margin:0 0 8px; font-size:18px}
+.card p{margin:0; color:var(--muted); font-size:15px}
+
+/* publications */
+.pubs{display:grid; gap:14px}
+.pub{display:grid; grid-template-columns:150px 1fr; gap:20px; align-items:start; border:1px solid var(--line); background:linear-gradient(180deg,var(--glass2),var(--glass)); border-radius:var(--radius); padding:20px 24px; transition:.2s}
+.pub:hover{border-color:rgba(106,125,255,.45); transform:translateX(3px)}
+.venue{display:inline-block; padding:5px 11px; border-radius:9px; background:rgba(139,123,255,.14); color:#cdc6ff; font-weight:700; font-size:12.5px; text-align:center}
+.pub .yr{display:block; margin-top:8px; color:var(--dim); font-size:13px}
+.pub h3{margin:0 0 6px; font-size:17px; line-height:1.4}
+.pub h3 a{color:#fff}
+.pub h3 a:hover{color:var(--cyan); text-decoration:none}
+.pub .auth{color:var(--muted); font-size:14.5px}
+.pub .auth b{color:#e6ebf5}
+.pub .ven{color:var(--dim); font-size:13.5px; margin-top:4px}
+@media (max-width:700px){ .pub{grid-template-columns:1fr; gap:10px} }
+
+/* project */
+.project{display:grid; grid-template-columns:1.4fr 1fr; gap:26px; align-items:center}
+.project h3{margin:0 0 8px; font-size:24px}
+.project p{color:#c3ccdc; margin:0 0 16px}
+.project .feat{display:grid; gap:10px}
+.project .feat div{border:1px solid var(--line); background:var(--glass); border-radius:14px; padding:14px 16px; font-size:14.5px; color:#d3dbea}
+.project .feat b{display:block; color:#fff; margin-bottom:2px}
+@media (max-width:860px){ .project{grid-template-columns:1fr} }
+
+/* education + interests */
+.two{display:grid; grid-template-columns:repeat(2,1fr); gap:18px}
+@media (max-width:760px){ .two{grid-template-columns:1fr} }
+.edu{display:grid; gap:14px}
+.edu .item{border:1px solid var(--line); background:linear-gradient(180deg,var(--glass2),var(--glass)); border-radius:var(--radius); padding:20px 24px}
+.edu .when{color:var(--cyan); font-weight:700; font-size:12.5px; letter-spacing:.1em; text-transform:uppercase}
+.edu h3{margin:4px 0 2px; font-size:18px}
+.edu .org{color:var(--muted); font-size:15px}
+.edu p{margin:8px 0 0; color:#c3ccdc; font-size:15px}
+.interest{display:flex; gap:16px; align-items:center}
+.interest .emo{font-size:28px; width:54px; height:54px; border-radius:14px; display:grid; place-items:center; background:rgba(56,189,248,.1); border:1px solid rgba(56,189,248,.25)}
+.interest h3{margin:0; font-size:17px}
+.interest p{margin:2px 0 0; color:var(--muted); font-size:15px}
+
+/* contact */
+.cta{text-align:center; padding:46px 24px; border:1px solid var(--line); border-radius:26px; background:
+  radial-gradient(600px 260px at 50% 0%, rgba(79,140,255,.2), transparent 70%), linear-gradient(180deg,var(--glass2),var(--glass))}
+.cta h2{margin-top:6px}
+.cta .btns{justify-content:center; margin-top:22px}
+.cta .socials{justify-content:center}
+.cinfo{display:flex; flex-wrap:wrap; justify-content:center; gap:26px; margin-top:26px; color:var(--muted); font-size:15px}
+.cinfo b{color:#fff}
+
+footer{margin-top:90px; border-top:1px solid var(--line); padding:34px 0 44px; text-align:center; color:var(--dim); font-size:14px}
+footer .tags{justify-content:center; margin:0 0 20px}
+footer .tag{font-size:12.5px; padding:4px 12px; color:var(--muted); border-color:var(--line); background:var(--glass)}
+
+/* reveal */
+.reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease}
+.reveal.in{opacity:1; transform:none}
+@media (prefers-reduced-motion: reduce){
+  .reveal{opacity:1; transform:none; transition:none}
+  html{scroll-behavior:auto}
+  .status .dot,.typed .cursor{animation:none}
 }
-.tl .when{font-size:13px; color:var(--muted); font-weight:600}
-.tl h3{margin:2px 0 0; font-size:17px; color:var(--navy)}
-.tl .org{color:var(--muted); font-size:15px}
-.tl p{margin:6px 0 0; font-size:15px}
-
-/* skills */
-.skills{display:grid; gap:14px}
-.skill-row{display:grid; grid-template-columns:230px 1fr; gap:12px; align-items:start}
-.skill-row strong{color:var(--navy); font-size:15px}
-.skill-row span{color:var(--text); font-size:15px}
-@media (max-width:640px){ .skill-row{grid-template-columns:1fr; gap:2px} }
-
-.pubs{display:flex; flex-wrap:wrap; gap:8px}
-.pub{border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--card); font-size:14.5px}
-
-footer{border-top:1px solid var(--line); padding:28px 0 40px; color:var(--muted); font-size:14px}
-footer .wrap{display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between}
 </style>
 </head>
 <body>
+<canvas id="net" aria-hidden="true"></canvas>
 
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="#top">Houssem Jmal</a>
-    <ul>
+    <a class="brand" href="#top">Houssem <span class="grad-text">Jmal</span></a>
+    <ul id="navlinks">
       <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#tech">Tech Stack</a></li>
       <li><a href="#research">Research</a></li>
       <li><a href="#publications">Publications</a></li>
       <li><a href="#projects">Projects</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#interests">Interests</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a class="cv" href="Houssem_Jmal_CV.pdf">CV</a></li>
     </ul>
   </div>
 </header>
 
 <main id="top">
+<!-- ================= HERO ================= -->
 <div class="hero">
   <div class="wrap">
-   <div class="hero-grid">
-    <div class="hero-text">
-    <div class="eyebrow">AI Research Scientist &amp; Engineer</div>
-    <h1>Houssem Jmal</h1>
-    <p class="lead">PhD candidate at Nantes Université / Inria. I build federated, secure and trustworthy machine learning systems, from algorithms with convergence guarantees to cloud deployment.</p>
-    <div class="btns">
-      <a class="btn primary" href="Houssem_Jmal_CV.pdf">Download CV (PDF)</a>
-      <a class="btn" href="https://scholar.google.com/citations?user=oTLPP4YAAAAJ&amp;hl=en">Google Scholar</a>
-      <a class="btn" href="https://github.com/H0uss">GitHub</a>
-      <a class="btn" href="https://www.linkedin.com/in/houssem-jmal-735123211/">LinkedIn</a>
-      <a class="btn" href="mailto:houssem.jmal@univ-nantes.fr">Email</a>
+    <div class="hero-grid">
+      <div>
+        <div class="status"><span class="dot"></span>Available for new opportunities &bull; Paris, France</div>
+        <h1>Houssem <span class="grad-text">Jmal</span></h1>
+        <div class="typed"><span id="typed"></span><span class="cursor"></span></div>
+        <p class="lead">I build federated, secure and trustworthy machine learning systems, from algorithms with convergence guarantees to cloud deployment. PhD candidate at Nantes Université / Inria.</p>
+        <div class="btns">
+          <a class="btn primary" href="#research">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.5L4.5 19a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 9.5V2"/><path d="M8.5 2h7M7 16h10"/></svg>View research</a>
+          <a class="btn" href="Houssem_Jmal_CV.pdf">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>Download CV</a>
+          <a class="btn" href="#contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Contact me</a>
+        </div>
+        <div class="socials">
+          <a href="https://scholar.google.com/citations?user=oTLPP4YAAAAJ&amp;hl=en" aria-label="Google Scholar" title="Google Scholar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 4 2 10l10 6 10-6z"/><path d="M6 12.5V17c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/></svg></a>
+          <a href="https://www.linkedin.com/in/houssem-jmal-735123211/" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11.5H3V9.75zm6.5 0h3.8v1.6h.06c.53-1 1.84-2.05 3.78-2.05 4.04 0 4.78 2.66 4.78 6.1v5.85h-4v-5.2c0-1.24-.02-2.84-1.73-2.84-1.73 0-2 1.35-2 2.75v5.29h-4V9.75z"/></svg></a>
+          <a href="https://github.com/H0uss" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.4c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg></a>
+          <a href="mailto:houssem.jmal@univ-nantes.fr" aria-label="Email" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+        </div>
+      </div>
+      <div class="portrait">
+        <div class="ring"><img src="photo.jpg" alt="Portrait of Houssem Jmal" width="300" height="300"></div>
+        <div class="chips">
+          <div class="chip"><b class="grad-text">PhD</b><span>Nantes Univ. / Inria</span></div>
+          <div class="chip"><b class="grad-text">FL</b><span>Federated Learning</span></div>
+          <div class="chip"><b class="grad-text">AI</b><span>Research &amp; Eng.</span></div>
+        </div>
+      </div>
     </div>
-    <div class="avail"><span class="dot"></span>Available for new opportunities &bull; Paris, France</div>
-    <div class="subnote">PhD defense expected January 2027 &middot; AI Scientist, AI Engineer and Data Scientist roles</div>
+
+    <div class="stats reveal">
+      <div class="stat"><b class="grad-text" data-count="6">6</b><span>Publications</span></div>
+      <div class="stat"><b class="grad-text" data-count="5">5</b><span>Venues: INFOCOM, TIFS, IoT, CCNC, MSWiM</span></div>
+      <div class="stat"><b class="grad-text" data-count="3">3</b><span>Countries: France, Japan, Tunisia</span></div>
+      <div class="stat"><b class="grad-text">56<sup style="font-size:.5em">th</sup></b><span>National engineering entrance exam rank</span></div>
     </div>
-    <img class="photo" src="photo.jpg" alt="Portrait of Houssem Jmal" width="200" height="200">
-   </div>
   </div>
 </div>
 
+<!-- ================= ABOUT ================= -->
 <section id="about">
-  <div class="wrap">
-    <h2>About</h2>
-    <p>I am an AI Research Scientist and Engineer, currently a PhD candidate at Nantes Université / Inria (LS2N laboratory, STACK team), with a defense planned for January 2027. My published research covers federated learning and network security, and I have hands-on experience in end-to-end ML development and cloud deployment.</p>
-    <p>My work spans federated intrusion detection on non-IID data, client selection with offline reinforcement learning, free-rider detection, and multimodal phishing detection with vision-language models. I also run Mycelia &amp; Rays, a part-time project that applies LLMs and hybrid search to medical document libraries.</p>
-  </div>
-</section>
-
-<section id="research">
-  <div class="wrap">
-    <h2>Research</h2>
-    <div class="grid two">
-      <div class="card">
-        <h3>Federated intrusion detection</h3>
-        <p>Distributed deep learning optimization algorithms for intrusion detection on non-IID network traffic, improving convergence rate and detection accuracy, with theoretical convergence guarantees.</p>
-        <div class="tags"><span class="tag">Federated learning</span><span class="tag">IDS</span><span class="tag">Optimization</span></div>
+  <div class="wrap reveal">
+    <div class="eyebrow">About</div>
+    <h2>From algorithms to trustworthy AI systems</h2>
+    <div class="panel about">
+      <div>
+        <p>I am an <b>AI Research Scientist and Engineer</b> and a <b>PhD candidate at Nantes Université / Inria</b> (LS2N laboratory, STACK team), with a defense planned for January 2027. My published research covers <b>federated learning</b> and <b>network security</b>, with hands-on experience in end-to-end ML development and cloud deployment.</p>
+        <p>My work spans federated intrusion detection on non-IID data, client selection with offline reinforcement learning, free-rider detection and multimodal phishing detection with vision-language models. I also run <b>Mycelia &amp; Rays</b>, a part-time project that applies LLMs and hybrid search to medical document libraries.</p>
+        <div class="tags">
+          <span class="tag">Federated Learning</span><span class="tag">Trustworthy AI</span><span class="tag">Intrusion Detection</span>
+          <span class="tag">Reinforcement Learning</span><span class="tag">Vision-Language Models</span><span class="tag">LLMs &amp; RAG</span>
+          <span class="tag">Graph Neural Networks</span><span class="tag">MLOps</span>
+        </div>
       </div>
-      <div class="card">
-        <h3>Client selection with offline RL</h3>
-        <p>A Decision Transformer-based client selection framework that reduces computation and communication time, extended with an MLOps lifecycle driven by a trajectory-diversity trigger for data shift.</p>
-        <div class="tags"><span class="tag">Decision Transformer</span><span class="tag">Offline RL</span><span class="tag">MLOps</span></div>
-      </div>
-      <div class="card">
-        <h3>Free-rider detection</h3>
-        <p>A gradient-sensitivity-based out-of-distribution detection method, and statistical tests applied during critical learning periods that measure dependence, innovation and effort of client updates.</p>
-        <div class="tags"><span class="tag">OOD detection</span><span class="tag">Statistical tests</span><span class="tag">Trustworthy AI</span></div>
-      </div>
-      <div class="card">
-        <h3>Multimodal phishing detection</h3>
-        <p>A framework combining URL features, HTML DOM parsing and webpage screenshots analyzed with VLMs (Qwen2-VL, SmolVLM-Instruct, Llama-3.2-11B-Vision-Instruct), fine-tuned with PEFT under federated learning.</p>
-        <div class="tags"><span class="tag">VLMs</span><span class="tag">PEFT</span><span class="tag">Federated learning</span></div>
+      <div class="kv">
+        <div><small>Current role</small><span>PhD Researcher, Nantes Université / Inria</span></div>
+        <div><small>Education</small><span>PhD (expected Jan. 2027) · Engineering degree, Signals &amp; Systems Processing</span></div>
+        <div><small>Languages</small><span>French (fluent) · English (fluent) · Arabic (native)</span></div>
+        <div><small>Location</small><span>Paris, France</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="publications">
-  <div class="wrap">
-    <h2>Publications</h2>
-    <ol class="pubs-list">
-      <li>Nardine Basta et al. <em>Pro-ZD: A Transferable Graph Neural Network Approach for Proactive Zero-Day Threats Mitigation.</em> 2026. arXiv:2602.07073 [cs.CR].
-        <span class="links"><a href="https://arxiv.org/abs/2602.07073">arXiv</a></span></li>
-      <li><span class="me">Houssem Jmal</span>, Kandaraj Piamrat and Ons Aouedi. &ldquo;E-TUNE-FL: Efficient and adapTive semi-synchronoUs semi-deceNtralizEd Federated Learning&rdquo;. <em>Internet of Things</em> (2026), p. 102136. ISSN 2542-6605.
-        <span class="links"><a href="https://doi.org/10.1016/j.iot.2026.102136">DOI 10.1016/j.iot.2026.102136</a> &middot; <a href="https://www.sciencedirect.com/science/article/pii/S2542660526002660">ScienceDirect</a></span></li>
-      <li><span class="me">Houssem Jmal</span>, Kandaraj Piamrat and Ons Aouedi. &ldquo;TUNE-FL: Adaptive Semi-Synchronous Semi-Decentralized Federated Learning&rdquo;. In: <em>2025 IEEE 22nd Consumer Communications &amp; Networking Conference (CCNC)</em>, 2025, pp. 1&ndash;6.
-        <span class="links"><a href="https://doi.org/10.1109/CCNC54725.2025.10975902">DOI 10.1109/CCNC54725.2025.10975902</a></span></li>
-      <li><span class="me">Houssem Jmal</span>, Kandaraj Piamrat and Yusheng Ji. &ldquo;DSFR-FL: Detecting Selfish Free-Riders in Federated Learning on Continuous Network Traffic&rdquo;. In: <em>IEEE INFOCOM 2026 &ndash; IEEE Conference on Computer Communications</em>, 2026, pp. 1&ndash;6.
-        <span class="links"><a href="https://doi.org/10.1109/INFOCOM59046.2026.11571382">DOI 10.1109/INFOCOM59046.2026.11571382</a></span></li>
-      <li><span class="me">Houssem Jmal</span> et al. &ldquo;FLAIR: Federated Learning with Adaptive and Intelligent Reasoning for Client Selection&rdquo;. In: <em>2025 International Conference on Modeling, Analysis and Simulation of Wireless and Mobile Systems (MSWiM)</em>, 2025, pp. 178&ndash;182.
-        <span class="links"><a href="https://doi.org/10.1109/MSWiM67937.2025.11308736">DOI 10.1109/MSWiM67937.2025.11308736</a></span></li>
-      <li><span class="me">Houssem Jmal</span> et al. &ldquo;SPGNN-API: A Transferable Graph Neural Network for Attack Paths Identification and Autonomous Mitigation&rdquo;. <em>IEEE Transactions on Information Forensics and Security</em> 19 (2024), pp. 1601&ndash;1613.
-        <span class="links"><a href="https://doi.org/10.1109/TIFS.2023.3338965">DOI 10.1109/TIFS.2023.3338965</a></span></li>
-    </ol>
-    <p style="margin-top:14px">Also on <a href="https://scholar.google.com/citations?user=oTLPP4YAAAAJ&amp;hl=en">Google Scholar</a>.</p>
-  </div>
-</section>
-
-<section id="projects">
-  <div class="wrap">
-    <h2>Personal Projects</h2>
-    <div class="card">
-      <h3><a href="https://myceliandrays.com/">Mycelia &amp; Rays</a></h3>
-      <p>AI radiology library platform. An LLM-powered medical document processing pipeline (FastAPI, OCR, prompt chaining) for classification, tagging and organization, plus hybrid semantic and keyword search with ChromaDB and PostgreSQL/pgvector on Google Cloud, enabling source-grounded quiz generation.</p>
-      <div class="tags"><span class="tag">LLMs</span><span class="tag">Hybrid search</span><span class="tag">GCP</span></div>
-    </div>
-  </div>
-</section>
-
+<!-- ================= EXPERIENCE ================= -->
 <section id="experience">
   <div class="wrap">
-    <h2>Experience</h2>
-    <ul class="tl">
-      <li>
+    <div class="eyebrow reveal">Experience</div>
+    <h2 class="reveal">Research and engineering roles</h2>
+    <div class="tl">
+
+      <div class="job reveal">
         <div class="when">Apr. 2024 – Jan. 2027</div>
-        <h3>PhD Researcher, Machine Learning</h3>
-        <div class="org">Nantes Université, LS2N Laboratory (STACK Team, Inria) · Nantes, France</div>
-        <p>Federated learning for the security and privacy of decentralized systems.</p>
-      </li>
-      <li>
-        <div class="when">May 2026 – Present (part-time)</div>
+        <h3>PhD Researcher, Machine Learning (Federated Learning &amp; Security)</h3>
+        <div class="org">Nantes Université · LS2N Laboratory (STACK Team, Inria) · Nantes, France</div>
+        <ul>
+          <li><b>Federated intrusion detection (IDS):</b> developed distributed deep learning optimization algorithms for federated intrusion detection on non-IID network traffic, improving convergence rate and detection accuracy with theoretical convergence guarantees.</li>
+          <li><b>Client selection with offline reinforcement learning:</b> designed a Decision Transformer-based client selection framework for federated learning, reducing computation and communication time; extended it with an MLOps lifecycle using a trajectory-diversity trigger to detect data shift.</li>
+          <li><b>Free-rider detection (OOD):</b> developed a gradient-sensitivity-based out-of-distribution detection method to identify free-riding clients through anomalous model update behavior.</li>
+          <li><b>Free-rider detection (statistical):</b> designed statistical tests, applied during critical learning periods, that measure the dependence, innovation and effort of client updates to detect free-riding behavior.</li>
+          <li><b>Multimodal phishing detection (VLMs):</b> built a framework combining URL features, HTML DOM parsing and webpage screenshots analyzed with vision-language models (Qwen2-VL, SmolVLM-Instruct, Llama-3.2-11B-Vision-Instruct); fine-tuned them with PEFT under federated learning.</li>
+          <li><b>EU-funded research project:</b> contributed to <a href="https://di4spds.eu/">Di4SPDS</a>, a European project on federated-learning-based collaborative intrusion detection.</li>
+          <li><b>Peer-reviewed publications:</b> IEEE INFOCOM, IEEE MSWiM, IEEE CCNC, Internet of Things and IEEE Transactions on Information Forensics and Security (TIFS).</li>
+        </ul>
+      </div>
+
+      <div class="job reveal">
+        <div class="when">May 2026 – Present · part-time</div>
         <h3>Founder, AI Radiology Library Platform</h3>
-        <div class="org"><a href="https://myceliandrays.com/">Mycelia &amp; Rays</a></div>
-        <p>LLM document pipeline and hybrid search on Google Cloud.</p>
-      </li>
-      <li>
+        <div class="org"><a href="https://myceliandrays.com/">Mycelia &amp; Rays</a> · France</div>
+        <ul>
+          <li>Built an <b>LLM-powered medical document processing pipeline</b> (FastAPI, OCR, prompt chaining) for automated document classification, tagging and organization.</li>
+          <li>Engineered a <b>hybrid semantic and keyword search</b> system with ChromaDB and PostgreSQL/pgvector, deployed on Google Cloud Platform (Cloud Run, Cloud SQL, Cloud Storage, Cloud Tasks), enabling scalable retrieval and source-grounded quiz generation.</li>
+        </ul>
+      </div>
+
+      <div class="job reveal">
         <div class="when">Apr. 2025 – Jul. 2025</div>
         <h3>Visiting Researcher, Federated Learning &amp; Reinforcement Learning</h3>
         <div class="org">National Institute of Informatics (NII) · Tokyo, Japan</div>
-        <p>Reinforcement learning methods (PPO, DQN, Decision Transformers) for adaptive client selection and non-IID heterogeneity.</p>
-      </li>
-      <li>
+        <ul>
+          <li>Conducted federated learning research with an international team, investigating <b>reinforcement learning</b> methods (PPO, DQN, Decision Transformers) for adaptive client selection and non-IID data heterogeneity.</li>
+        </ul>
+      </div>
+
+      <div class="job reveal">
         <div class="when">Jan. 2024 – Apr. 2024</div>
         <h3>Research Engineer, Federated Learning</h3>
         <div class="org">IMT Atlantique · Nantes, France</div>
-        <p>Experimental framework for federated learning research on the Grid5000 testbed.</p>
-      </li>
-      <li>
+        <ul>
+          <li>Contributed to an experimental framework for <b>federated learning</b> research on the Grid5000 high-performance computing (HPC) testbed.</li>
+        </ul>
+      </div>
+
+      <div class="job reveal">
         <div class="when">Mar. 2023 – Aug. 2023</div>
-        <h3>Data Science &amp; NLP Intern</h3>
+        <h3>Data Science &amp; NLP Intern (Graduation Internship)</h3>
         <div class="org">Athena Experts · Tunis, Tunisia</div>
-        <p>Web scraping and NLP to detect personally identifiable information (PII) leaks.</p>
-      </li>
-      <li>
+        <ul>
+          <li>Leveraged web scraping and natural language processing (NLP) to detect <b>Personally Identifiable Information (PII)</b> leaks on the web.</li>
+        </ul>
+      </div>
+
+      <div class="job reveal">
         <div class="when">Oct. 2022 – Jun. 2023</div>
         <h3>AI Researcher</h3>
         <div class="org">Ditno INC · Remote</div>
-        <p>Graph Neural Networks for automated threat mitigation with firewall rules and Zero-Trust policies.</p>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<section id="skills">
-  <div class="wrap">
-    <h2>Skills</h2>
-    <div class="skills">
-      <div class="skill-row"><strong>Federated &amp; Distributed Learning</strong><span>Flower, PyTorch, non-IID data heterogeneity, client selection, free-rider &amp; out-of-distribution (OOD) detection, HPC (Grid5000)</span></div>
-      <div class="skill-row"><strong>Foundation Models &amp; Post-Training</strong><span>LLMs, VLMs (Qwen2-VL, Llama-3.2-Vision), PEFT (LoRA/QLoRA), instruction tuning, distillation &amp; quantization, RAG, embeddings &amp; vector search (ChromaDB, pgvector), LLM guardrails, agentic AI (MCP, LangChain)</span></div>
-      <div class="skill-row"><strong>Deep &amp; Reinforcement Learning</strong><span>Transformers, Decision Transformers, offline RL, PPO, DQN, GNNs, Diffusion Models, NLP</span></div>
-      <div class="skill-row"><strong>Trustworthy AI &amp; Security</strong><span>Differential privacy, adversarial robustness, uncertainty quantification, explainable AI (XAI), intrusion detection (IDS), threat modeling</span></div>
-      <div class="skill-row"><strong>Engineering &amp; MLOps</strong><span>Python, SQL, PyTorch, TensorFlow, Hugging Face, FastAPI, Docker, Google Cloud Platform (Cloud Run, BigQuery), CI/CD, MLflow, Git</span></div>
-      <div class="skill-row"><strong>Certification</strong><span><a href="https://www.credly.com/badges/0ab70808-49cf-46ac-b40b-954600c6996c/public_url">Google Cloud Machine Learning Professional</a></span></div>
-      <div class="skill-row"><strong>Languages</strong><span>French (fluent), English (fluent), Arabic (native)</span></div>
+        <ul>
+          <li>Applied <b>Graph Neural Networks (GNNs)</b> to automate threat mitigation through firewall rules and Zero-Trust (ZT) policies.</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- ================= TECH ================= -->
+<section id="tech">
+  <div class="wrap">
+    <div class="eyebrow reveal">Tech Stack</div>
+    <h2 class="reveal">Tools I research and ship with</h2>
+    <p class="sub reveal">From federated learning experiments on HPC to LLM services on Google Cloud.</p>
+    <div class="panel techgrid reveal">
+      <div class="tcat"><h4>Federated &amp; Distributed Learning</h4><div class="tools">
+        <span class="tool">Flower</span><span class="tool">PyTorch</span><span class="tool">non-IID data</span><span class="tool">Client selection</span><span class="tool">Free-rider &amp; OOD detection</span><span class="tool">HPC · Grid5000</span></div></div>
+      <div class="tcat"><h4>Foundation Models &amp; Post-Training</h4><div class="tools">
+        <span class="tool">LLMs</span><span class="tool">VLMs · Qwen2-VL · Llama-3.2-Vision</span><span class="tool">PEFT · LoRA / QLoRA</span><span class="tool">Instruction tuning</span><span class="tool">Distillation &amp; quantization</span><span class="tool">RAG</span><span class="tool">ChromaDB · pgvector</span><span class="tool">LLM guardrails</span><span class="tool">MCP · LangChain</span></div></div>
+      <div class="tcat"><h4>Deep &amp; Reinforcement Learning</h4><div class="tools">
+        <span class="tool">Transformers</span><span class="tool">Decision Transformers</span><span class="tool">Offline RL</span><span class="tool">PPO · DQN</span><span class="tool">GNNs</span><span class="tool">Diffusion Models</span><span class="tool">NLP</span></div></div>
+      <div class="tcat"><h4>Trustworthy AI &amp; Security</h4><div class="tools">
+        <span class="tool">Differential privacy</span><span class="tool">Adversarial robustness</span><span class="tool">Uncertainty quantification</span><span class="tool">Explainable AI (XAI)</span><span class="tool">Intrusion detection (IDS)</span><span class="tool">Threat modeling</span></div></div>
+      <div class="tcat"><h4>Engineering &amp; MLOps</h4><div class="tools">
+        <span class="tool"><img src="https://cdn.simpleicons.org/python" alt="" onerror="this.remove()">Python</span>
+        <span class="tool">SQL</span>
+        <span class="tool"><img src="https://cdn.simpleicons.org/pytorch/ee4c2c" alt="" onerror="this.remove()">PyTorch</span>
+        <span class="tool"><img src="https://cdn.simpleicons.org/tensorflow" alt="" onerror="this.remove()">TensorFlow</span>
+        <span class="tool"><img src="https://cdn.simpleicons.org/huggingface" alt="" onerror="this.remove()">Hugging Face</span>
+        <span class="tool"><img src="https://cdn.simpleicons.org/fastapi" alt="" onerror="this.remove()">FastAPI</span>
+        <span class="tool"><img src="https://cdn.simpleicons.org/docker" alt="" onerror="this.remove()">Docker</span>
+        <span class="tool"><img src="https://cdn.simpleicons.org/googlecloud" alt="" onerror="this.remove()">Google Cloud</span>
+        <span class="tool">CI/CD</span>
+        <span class="tool"><img src="https://cdn.simpleicons.org/mlflow" alt="" onerror="this.remove()">MLflow</span>
+        <span class="tool"><img src="https://cdn.simpleicons.org/git" alt="" onerror="this.remove()">Git</span></div></div>
+      <div class="tcat"><h4>Certification</h4><div class="tools">
+        <a class="tool" href="https://www.credly.com/badges/0ab70808-49cf-46ac-b40b-954600c6996c/public_url">Google Cloud Machine Learning Professional ↗</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESEARCH ================= -->
+<section id="research">
+  <div class="wrap">
+    <div class="eyebrow reveal">Research</div>
+    <h2 class="reveal">Research areas &amp; expertise</h2>
+    <div class="cards">
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="18" r="2.2"/><path d="M12 7.2v4.3M12 11.5L6.3 16.3M12 11.5l5.7 4.8"/></svg></div>
+        <h3>Semi-decentralized federated learning</h3>
+        <p>Adaptive semi-synchronous, semi-decentralized training (TUNE-FL and E-TUNE-FL) for efficient federated learning.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6l8-3z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg></div>
+        <h3>Federated intrusion detection</h3>
+        <p>Distributed optimization for intrusion detection on non-IID network traffic, with theoretical convergence guarantees.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9z"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg></div>
+        <h3>Client selection with offline RL</h3>
+        <p>Decision Transformer-based client selection that reduces computation and communication time, with an MLOps trigger for data shift.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 21c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/><path d="M3 3l18 18"/></svg></div>
+        <h3>Free-rider detection</h3>
+        <p>Gradient-sensitivity OOD detection and statistical tests on dependence, innovation and effort of client updates.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.7-7 10-7 10 7 10 7-3.7 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>Multimodal phishing detection</h3>
+        <p>URL features, HTML DOM parsing and screenshots analyzed with VLMs, fine-tuned with PEFT under federated learning.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/><circle cx="12" cy="11" r="2.2"/><path d="M7.8 7.4l2.6 2.3M16.2 7.4l-2.6 2.3M12 13.2V15.8"/></svg></div>
+        <h3>Graph neural networks for threat mitigation</h3>
+        <p>Transferable GNNs for attack path identification and autonomous mitigation (SPGNN-API and Pro-ZD).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PUBLICATIONS ================= -->
+<section id="publications">
+  <div class="wrap">
+    <div class="eyebrow reveal">Publications</div>
+    <h2 class="reveal">Peer-reviewed work</h2>
+    <p class="sub reveal">Also on <a href="https://scholar.google.com/citations?user=oTLPP4YAAAAJ&amp;hl=en">Google Scholar</a>.</p>
+    <div class="pubs">
+      <div class="pub reveal">
+        <div><span class="venue">arXiv · cs.CR</span><span class="yr">2026</span></div>
+        <div>
+          <h3><a href="https://arxiv.org/abs/2602.07073">Pro-ZD: A Transferable Graph Neural Network Approach for Proactive Zero-Day Threats Mitigation</a></h3>
+          <div class="auth">Nardine Basta et al.</div>
+          <div class="ven">arXiv:2602.07073</div>
+        </div>
+      </div>
+      <div class="pub reveal">
+        <div><span class="venue">Internet of Things</span><span class="yr">2026</span></div>
+        <div>
+          <h3><a href="https://doi.org/10.1016/j.iot.2026.102136">E-TUNE-FL: Efficient and adapTive semi-synchronoUs semi-deceNtralizEd Federated Learning</a></h3>
+          <div class="auth"><b>Houssem Jmal</b>, Kandaraj Piamrat, Ons Aouedi</div>
+          <div class="ven">Internet of Things (2026), p. 102136 · ISSN 2542-6605 · <a href="https://www.sciencedirect.com/science/article/pii/S2542660526002660">ScienceDirect</a></div>
+        </div>
+      </div>
+      <div class="pub reveal">
+        <div><span class="venue">IEEE INFOCOM</span><span class="yr">2026</span></div>
+        <div>
+          <h3><a href="https://doi.org/10.1109/INFOCOM59046.2026.11571382">DSFR-FL: Detecting Selfish Free-Riders in Federated Learning on Continuous Network Traffic</a></h3>
+          <div class="auth"><b>Houssem Jmal</b>, Kandaraj Piamrat, Yusheng Ji</div>
+          <div class="ven">IEEE INFOCOM 2026 – IEEE Conference on Computer Communications, pp. 1–6</div>
+        </div>
+      </div>
+      <div class="pub reveal">
+        <div><span class="venue">IEEE CCNC</span><span class="yr">2025</span></div>
+        <div>
+          <h3><a href="https://doi.org/10.1109/CCNC54725.2025.10975902">TUNE-FL: Adaptive Semi-Synchronous Semi-Decentralized Federated Learning</a></h3>
+          <div class="auth"><b>Houssem Jmal</b>, Kandaraj Piamrat, Ons Aouedi</div>
+          <div class="ven">2025 IEEE 22nd Consumer Communications &amp; Networking Conference (CCNC), pp. 1–6</div>
+        </div>
+      </div>
+      <div class="pub reveal">
+        <div><span class="venue">IEEE MSWiM</span><span class="yr">2025</span></div>
+        <div>
+          <h3><a href="https://doi.org/10.1109/MSWiM67937.2025.11308736">FLAIR: Federated Learning with Adaptive and Intelligent Reasoning for Client Selection</a></h3>
+          <div class="auth"><b>Houssem Jmal</b> et al.</div>
+          <div class="ven">2025 International Conference on Modeling, Analysis and Simulation of Wireless and Mobile Systems (MSWiM), pp. 178–182</div>
+        </div>
+      </div>
+      <div class="pub reveal">
+        <div><span class="venue">IEEE TIFS</span><span class="yr">2024</span></div>
+        <div>
+          <h3><a href="https://doi.org/10.1109/TIFS.2023.3338965">SPGNN-API: A Transferable Graph Neural Network for Attack Paths Identification and Autonomous Mitigation</a></h3>
+          <div class="auth"><b>Houssem Jmal</b> et al.</div>
+          <div class="ven">IEEE Transactions on Information Forensics and Security 19 (2024), pp. 1601–1613</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects">
+  <div class="wrap">
+    <div class="eyebrow reveal">Personal Projects</div>
+    <h2 class="reveal">Building outside the lab</h2>
+    <div class="panel project reveal">
+      <div>
+        <h3><a href="https://myceliandrays.com/">Mycelia &amp; Rays ↗</a></h3>
+        <p>An AI radiology library platform. An LLM-powered medical document processing pipeline (FastAPI, OCR, prompt chaining) automates classification, tagging and organization, and hybrid semantic and keyword search powers source-grounded quiz generation.</p>
+        <div class="tags"><span class="tag">LLMs</span><span class="tag">Hybrid search</span><span class="tag">ChromaDB</span><span class="tag">pgvector</span><span class="tag">Google Cloud</span></div>
+      </div>
+      <div class="feat">
+        <div><b>Document pipeline</b>FastAPI · OCR · prompt chaining</div>
+        <div><b>Retrieval</b>ChromaDB · PostgreSQL / pgvector</div>
+        <div><b>Cloud</b>Cloud Run · Cloud SQL · Cloud Storage · Cloud Tasks</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EDUCATION ================= -->
 <section id="education">
   <div class="wrap">
-    <h2>Education</h2>
-    <ul class="tl">
-      <li>
+    <div class="eyebrow reveal">Education</div>
+    <h2 class="reveal">Academic background</h2>
+    <div class="edu">
+      <div class="item reveal">
         <div class="when">Apr. 2024 – Jan. 2027 (expected)</div>
         <h3>PhD, Federated Learning for Enhancing the Security and Privacy of Decentralized Systems</h3>
-        <div class="org">Nantes Université, LS2N Laboratory (STACK Team, Inria) · Nantes, France</div>
-      </li>
-      <li>
+        <div class="org">Nantes Université · LS2N Laboratory (STACK Team, Inria) · Nantes, France</div>
+      </div>
+      <div class="item reveal">
         <div class="when">Sep. 2020 – Sep. 2023</div>
         <h3>Engineering Degree, Specialization in Signals and Systems Processing</h3>
         <div class="org">Ecole Polytechnique de Tunisie · Tunis, Tunisia</div>
         <p>Machine learning, deep learning, optimization, probability &amp; statistics, mathematical modeling.</p>
-      </li>
-      <li>
+      </div>
+      <div class="item reveal">
         <div class="when">Sep. 2018 – Sep. 2020</div>
         <h3>Pre-Engineering MP (Math/Physics) Classes</h3>
         <div class="org">Institut Préparatoire aux Études d'Ingénieur de Sfax · Sfax, Tunisia</div>
         <p>Ranked 56th in the national entrance exam.</p>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 </section>
+
+<!-- ================= INTERESTS ================= -->
 <section id="interests">
   <div class="wrap">
-    <h2>Interests</h2>
-    <div class="interests">
-      <div class="card"><h3>Sports</h3><p>Basketball, Ping-Pong and workouts.</p></div>
-      <div class="card"><h3>Entertainment</h3><p>Video games and watching TV series.</p></div>
+    <div class="eyebrow reveal">Interests</div>
+    <h2 class="reveal">Beyond research</h2>
+    <div class="two">
+      <div class="card interest reveal"><div class="emo">🏀</div><div><h3>Sports</h3><p>Basketball, Ping-Pong and workouts.</p></div></div>
+      <div class="card interest reveal"><div class="emo">🎮</div><div><h3>Entertainment</h3><p>Video games and watching TV series.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap">
+    <div class="cta reveal">
+      <div class="eyebrow">Contact</div>
+      <h2>Let's <span class="grad-text">work together</span></h2>
+      <p class="sub" style="margin:0 auto">I am available for new opportunities as an AI Scientist, AI Engineer or Data Scientist. The best way to reach me is by email.</p>
+      <div class="btns">
+        <a class="btn primary" href="mailto:houssem.jmal@univ-nantes.fr">houssem.jmal@univ-nantes.fr</a>
+        <a class="btn" href="https://www.linkedin.com/in/houssem-jmal-735123211/">LinkedIn</a>
+        <a class="btn" href="https://github.com/H0uss">GitHub</a>
+        <a class="btn" href="Houssem_Jmal_CV.pdf">Download CV</a>
+      </div>
+      <div class="cinfo"><span>📍 <b>Paris, France</b></span><span>🟢 <b>Available for new opportunities</b></span></div>
     </div>
   </div>
 </section>
@@ -343,15 +593,81 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:12px; justify-content:space-betwe
 
 <footer>
   <div class="wrap">
-    <span>© <span id="yr">2026</span> Houssem Jmal</span>
-    <span>
-      <a href="https://github.com/H0uss">GitHub</a> ·
-      <a href="https://www.linkedin.com/in/houssem-jmal-735123211/">LinkedIn</a> ·
-      <a href="https://scholar.google.com/citations?user=oTLPP4YAAAAJ&amp;hl=en">Google Scholar</a> ·
-      <a href="mailto:houssem.jmal@univ-nantes.fr">Email</a>
-    </span>
+    <div class="tags">
+      <span class="tag">AI Research Scientist</span><span class="tag">AI Engineer</span><span class="tag">Federated Learning</span>
+      <span class="tag">Trustworthy AI</span><span class="tag">Foundation Models</span>
+    </div>
+    <div><a href="Houssem_Jmal_CV.pdf">CV (PDF)</a> · <a href="https://scholar.google.com/citations?user=oTLPP4YAAAAJ&amp;hl=en">Google Scholar</a> · <a href="https://www.linkedin.com/in/houssem-jmal-735123211/">LinkedIn</a> · <a href="https://github.com/H0uss">GitHub</a></div>
+    <div style="margin-top:10px">© <span id="yr">2026</span> Houssem Jmal</div>
   </div>
 </footer>
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* scroll reveal */
+  var items = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !reduce){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    },{threshold:.08, rootMargin:'0px 0px -30px 0px'});
+    items.forEach(function(el){ io.observe(el); });
+  } else { items.forEach(function(el){ el.classList.add('in'); }); }
+
+  /* active nav link */
+  var links = document.querySelectorAll('#navlinks a[href^="#"]');
+  var map = {};
+  links.forEach(function(a){ map[a.getAttribute('href').slice(1)] = a; });
+  if('IntersectionObserver' in window){
+    var so = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(a){ a.classList.remove('active'); });
+          if(map[e.target.id]) map[e.target.id].classList.add('active');
+        }
+      });
+    },{rootMargin:'-45% 0px -50% 0px'});
+    Object.keys(map).forEach(function(id){ var s=document.getElementById(id); if(s) so.observe(s); });
+  }
+
+  /* typed subtitle */
+  var phrases = ['AI Research Scientist & Engineer','Federated Learning & Trustworthy AI','Foundation Models & Post-Training','Reinforcement Learning for Security'];
+  var el = document.getElementById('typed');
+  if(reduce){ el.textContent = phrases[0]; }
+  else {
+    var p=0, i=0, del=false;
+    (function tick(){
+      var s = phrases[p];
+      el.textContent = s.slice(0,i);
+      if(!del && i===s.length){ del=true; return setTimeout(tick,1800); }
+      if(del && i===0){ del=false; p=(p+1)%phrases.length; }
+      i += del ? -1 : 1;
+      setTimeout(tick, del ? 28 : 55);
+    })();
+  }
+
+  /* network background */
+  var c = document.getElementById('net'), ctx = c.getContext('2d');
+  var W,H,pts=[],N;
+  function size(){ W=c.width=innerWidth; H=c.height=innerHeight; N=Math.min(70,Math.floor(W*H/22000)); pts=[];
+    for(var k=0;k<N;k++) pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25}); }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(var a=0;a<N;a++){
+      var A=pts[a];
+      if(!reduce){ A.x+=A.vx; A.y+=A.vy; if(A.x<0||A.x>W)A.vx*=-1; if(A.y<0||A.y>H)A.vy*=-1; }
+      ctx.fillStyle='rgba(56,189,248,.55)'; ctx.beginPath(); ctx.arc(A.x,A.y,1.6,0,6.283); ctx.fill();
+      for(var b=a+1;b<N;b++){
+        var B=pts[b], dx=A.x-B.x, dy=A.y-B.y, d=dx*dx+dy*dy;
+        if(d<16000){ ctx.strokeStyle='rgba(106,125,255,'+(0.22*(1-d/16000))+')'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.stroke(); }
+      }
+    }
+    if(!reduce) requestAnimationFrame(draw);
+  }
+  size(); draw(); addEventListener('resize',function(){ size(); if(reduce) draw(); });
+})();
+</script>
 </body>
 </html>
