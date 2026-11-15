@@ -86,6 +86,18 @@ header.nav{
   .hero .photo{width:128px; height:128px}
 }
 
+.avail{display:inline-flex; align-items:center; gap:8px; margin-top:22px; padding:6px 14px; border-radius:999px;
+  background:var(--blue-soft); color:var(--blue); font-size:14px; font-weight:600}
+.avail .dot{width:9px; height:9px; border-radius:50%; background:#2fb36b; box-shadow:0 0 0 3px rgba(47,179,107,.25)}
+.subnote{margin-top:10px; color:var(--muted); font-size:14px}
+ol.pubs-list{list-style:none; counter-reset:pub; margin:0; padding:0; display:grid; gap:14px}
+ol.pubs-list li{counter-increment:pub; position:relative; padding:14px 16px 14px 52px; background:var(--card);
+  border:1px solid var(--line); border-radius:10px; font-size:15px}
+ol.pubs-list li::before{content:"[" counter(pub) "]"; position:absolute; left:16px; top:14px; color:var(--blue); font-weight:700}
+ol.pubs-list .links{display:block; margin-top:4px; font-size:13.5px; color:var(--muted)}
+ol.pubs-list .me{font-weight:700; color:var(--navy)}
+.interests{display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+
 /* sections */
 section{padding:56px 0; border-top:1px solid var(--line)}
 section h2{font-size:26px; margin:0 0 24px; color:var(--navy)}
@@ -134,10 +146,12 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:12px; justify-content:space-betwe
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#education">Education</a></li>
+      <li><a href="#interests">Interests</a></li>
     </ul>
   </div>
 </header>
@@ -157,7 +171,8 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:12px; justify-content:space-betwe
       <a class="btn" href="https://www.linkedin.com/in/houssem-jmal-735123211/">LinkedIn</a>
       <a class="btn" href="mailto:houssem.jmal@univ-nantes.fr">Email</a>
     </div>
-    <div class="meta">Paris, France · Defense expected January 2027 · Open to AI Scientist, AI Engineer and Data Scientist roles</div>
+    <div class="avail"><span class="dot"></span>Available for new opportunities &bull; Paris, France</div>
+    <div class="subnote">PhD defense expected January 2027 &middot; AI Scientist, AI Engineer and Data Scientist roles</div>
     </div>
     <img class="photo" src="photo.jpg" alt="Portrait of Houssem Jmal" width="200" height="200">
    </div>
@@ -197,33 +212,37 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:12px; justify-content:space-betwe
         <div class="tags"><span class="tag">VLMs</span><span class="tag">PEFT</span><span class="tag">Federated learning</span></div>
       </div>
     </div>
+  </div>
+</section>
 
-    <h3 style="margin:36px 0 12px;color:var(--navy);font-size:18px">Publications</h3>
-    <div class="pubs">
-      <span class="pub">IEEE INFOCOM</span>
-      <span class="pub">IEEE MSWiM</span>
-      <span class="pub">IEEE CCNC</span>
-      <span class="pub">Internet of Things Journal</span>
-      <span class="pub">IEEE Transactions on Information Forensics and Security (TIFS)</span>
-    </div>
-    <p style="margin-top:14px">The full list is on <a href="https://scholar.google.com/citations?user=oTLPP4YAAAAJ&amp;hl=en">Google Scholar</a>.</p>
+<section id="publications">
+  <div class="wrap">
+    <h2>Publications</h2>
+    <ol class="pubs-list">
+      <li>Nardine Basta et al. <em>Pro-ZD: A Transferable Graph Neural Network Approach for Proactive Zero-Day Threats Mitigation.</em> 2026. arXiv:2602.07073 [cs.CR].
+        <span class="links"><a href="https://arxiv.org/abs/2602.07073">arXiv</a></span></li>
+      <li><span class="me">Houssem Jmal</span>, Kandaraj Piamrat and Ons Aouedi. &ldquo;E-TUNE-FL: Efficient and adapTive semi-synchronoUs semi-deceNtralizEd Federated Learning&rdquo;. <em>Internet of Things</em> (2026), p. 102136. ISSN 2542-6605.
+        <span class="links"><a href="https://doi.org/10.1016/j.iot.2026.102136">DOI 10.1016/j.iot.2026.102136</a> &middot; <a href="https://www.sciencedirect.com/science/article/pii/S2542660526002660">ScienceDirect</a></span></li>
+      <li><span class="me">Houssem Jmal</span>, Kandaraj Piamrat and Ons Aouedi. &ldquo;TUNE-FL: Adaptive Semi-Synchronous Semi-Decentralized Federated Learning&rdquo;. In: <em>2025 IEEE 22nd Consumer Communications &amp; Networking Conference (CCNC)</em>, 2025, pp. 1&ndash;6.
+        <span class="links"><a href="https://doi.org/10.1109/CCNC54725.2025.10975902">DOI 10.1109/CCNC54725.2025.10975902</a></span></li>
+      <li><span class="me">Houssem Jmal</span>, Kandaraj Piamrat and Yusheng Ji. &ldquo;DSFR-FL: Detecting Selfish Free-Riders in Federated Learning on Continuous Network Traffic&rdquo;. In: <em>IEEE INFOCOM 2026 &ndash; IEEE Conference on Computer Communications</em>, 2026, pp. 1&ndash;6.
+        <span class="links"><a href="https://doi.org/10.1109/INFOCOM59046.2026.11571382">DOI 10.1109/INFOCOM59046.2026.11571382</a></span></li>
+      <li><span class="me">Houssem Jmal</span> et al. &ldquo;FLAIR: Federated Learning with Adaptive and Intelligent Reasoning for Client Selection&rdquo;. In: <em>2025 International Conference on Modeling, Analysis and Simulation of Wireless and Mobile Systems (MSWiM)</em>, 2025, pp. 178&ndash;182.
+        <span class="links"><a href="https://doi.org/10.1109/MSWiM67937.2025.11308736">DOI 10.1109/MSWiM67937.2025.11308736</a></span></li>
+      <li><span class="me">Houssem Jmal</span> et al. &ldquo;SPGNN-API: A Transferable Graph Neural Network for Attack Paths Identification and Autonomous Mitigation&rdquo;. <em>IEEE Transactions on Information Forensics and Security</em> 19 (2024), pp. 1601&ndash;1613.
+        <span class="links"><a href="https://doi.org/10.1109/TIFS.2023.3338965">DOI 10.1109/TIFS.2023.3338965</a></span></li>
+    </ol>
+    <p style="margin-top:14px">Also on <a href="https://scholar.google.com/citations?user=oTLPP4YAAAAJ&amp;hl=en">Google Scholar</a>.</p>
   </div>
 </section>
 
 <section id="projects">
   <div class="wrap">
-    <h2>Projects</h2>
-    <div class="grid two">
-      <div class="card">
-        <h3><a href="https://myceliandrays.com/">Mycelia &amp; Rays</a></h3>
-        <p>AI radiology library platform. An LLM-powered medical document processing pipeline (FastAPI, OCR, prompt chaining) for classification, tagging and organization, plus hybrid semantic and keyword search with ChromaDB and PostgreSQL/pgvector on Google Cloud, enabling source-grounded quiz generation.</p>
-        <div class="tags"><span class="tag">LLMs</span><span class="tag">Hybrid search</span><span class="tag">GCP</span></div>
-      </div>
-      <div class="card">
-        <h3><a href="https://di4spds.eu/">Di4SPDS</a></h3>
-        <p>A European research project on distributed intelligence for the security and privacy of decentralised systems, in which I contributed to federated-learning-based collaborative intrusion detection.</p>
-        <div class="tags"><span class="tag">Federated learning</span><span class="tag">Security</span></div>
-      </div>
+    <h2>Personal Projects</h2>
+    <div class="card">
+      <h3><a href="https://myceliandrays.com/">Mycelia &amp; Rays</a></h3>
+      <p>AI radiology library platform. An LLM-powered medical document processing pipeline (FastAPI, OCR, prompt chaining) for classification, tagging and organization, plus hybrid semantic and keyword search with ChromaDB and PostgreSQL/pgvector on Google Cloud, enabling source-grounded quiz generation.</p>
+      <div class="tags"><span class="tag">LLMs</span><span class="tag">Hybrid search</span><span class="tag">GCP</span></div>
     </div>
   </div>
 </section>
@@ -302,7 +321,22 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:12px; justify-content:space-betwe
         <div class="org">Ecole Polytechnique de Tunisie · Tunis, Tunisia</div>
         <p>Machine learning, deep learning, optimization, probability &amp; statistics, mathematical modeling.</p>
       </li>
+      <li>
+        <div class="when">Sep. 2018 – Sep. 2020</div>
+        <h3>Pre-Engineering MP (Math/Physics) Classes</h3>
+        <div class="org">Institut Préparatoire aux Études d'Ingénieur de Sfax · Sfax, Tunisia</div>
+        <p>Ranked 56th in the national entrance exam.</p>
+      </li>
     </ul>
+  </div>
+</section>
+<section id="interests">
+  <div class="wrap">
+    <h2>Interests</h2>
+    <div class="interests">
+      <div class="card"><h3>Sports</h3><p>Basketball, Ping-Pong and workouts.</p></div>
+      <div class="card"><h3>Entertainment</h3><p>Video games and watching TV series.</p></div>
+    </div>
   </div>
 </section>
 </main>
